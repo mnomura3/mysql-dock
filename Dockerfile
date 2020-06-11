@@ -5,5 +5,5 @@ RUN apk add mysql-client
 RUN apk add vim
 RUN pip install --upgrade pip
 RUN pip install pymysql
-RUN pip install Django==2.1.15
+RUN pip install Django==2.2
 EXPOSE 8000
