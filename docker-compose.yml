@@ -1,11 +1,15 @@
 version: '3'
+networks:
+  backend:
+    driver: bridge
+
 services:
   db:
     image: mysql:5.7
-    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_bin
     volumes:
       - ./.data/mysql:/var/lib/mysql
-      - ./.data/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./.data/conf.d:/etc/mysql/conf.d/
     environment:
       MYSQL_ROOT_PASSWORD: pass
       MYSQL_DATABASE: database
@@ -14,3 +18,15 @@ services:
     restart: always
     ports:
       - 33306:3306
+    networks:
+      - backend
+
+  app:
+    build: .
+    tty: true
+    ports:
+      - "8888:8000"
+    depends_on:
+      - db
+    networks:
+      - backend
