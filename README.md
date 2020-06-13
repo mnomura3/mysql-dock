@@ -6,6 +6,6 @@ and if you want to connect to mysql container from Host then `mysql -u root or d
 # steps
 1. docker-compose build
 1. docker-compose up -d
-1. docker-compose exec db /bin/ash
+1. docker-compose exec app /bin/ash
 1. mysql -h db -u root -p -P 3306
 1. ```pass``` enter
