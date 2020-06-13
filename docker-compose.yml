@@ -21,12 +21,12 @@ services:
       - backend
 
   app:
-    build: .
+    build: ./dock/app
     tty: true
     volumes:
       - ./app:/usr/src/app
     ports:
-      - "8888:8000"
+      - 8888:8000
     depends_on:
       - db
     networks:
