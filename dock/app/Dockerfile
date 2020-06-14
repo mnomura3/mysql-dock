@@ -3,6 +3,7 @@ WORKDIR /usr/src/app
 RUN apk update
 RUN apk add mysql-client
 RUN apk add vim
+RUN apk add git
 RUN apk add --no-cache build-base mariadb-connector-c-dev
 RUN pip install --upgrade pip
 #RUN pip install pymysql ＊2.2以降はmysqlclient推奨
