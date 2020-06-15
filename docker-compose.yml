@@ -24,7 +24,7 @@ services:
     build: ./dock/python
     tty: true
     volumes:
-      - ./app/python:/usr/src/app
+      - ./app:/usr/src/app
     ports:
       - 8888:8000
     depends_on:
