@@ -20,11 +20,11 @@ services:
     networks:
       - backend
 
-  app:
-    build: ./dock/app
+  python:
+    build: ./dock/python
     tty: true
     volumes:
-      - ./app:/usr/src/app
+      - ./app/python:/usr/src/app
     ports:
       - 8888:8000
     depends_on:
@@ -38,6 +38,6 @@ services:
     volumes:
       - ./app/node:/usr/src/app
     ports:
-      - 8080:8080
+      - 3030:3000
     networks:
       - backend
