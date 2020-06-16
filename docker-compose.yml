@@ -1,5 +1,7 @@
 version: '3'
 networks:
+  frontend:
+    driver: bridge
   backend:
     driver: bridge
 
@@ -20,14 +22,40 @@ services:
     networks:
       - backend
 
-  app:
-    build: ./dock/app
+  web:
+    build: ./dock/web
+    tty: true
+    volumes:
+      - ./dock/web/conf/nginx:/etc/nginx/conf.d
+    ports:
+      - 8000:8000
+    depends_on:
+      - python
+    networks:
+      - frontend
+
+  python:
+    build: ./dock/python
+    command: uwsgi --socket :8080 --module mysite.wsgi --py-autoreload 1 --logto /tmp/mylog.log
     tty: true
     volumes:
       - ./app:/usr/src/app
-    ports:
-      - 8888:8000
+#    ports:
+#      - 8888:8000
+    expose:
+      - 8080
     depends_on:
       - db
+    networks:
+      - frontend
+      - backend
+
+  node:
+    build: ./dock/node
+    tty: true
+    volumes:
+      - ./app/node:/usr/src/app
+    ports:
+      - 3030:3000
     networks:
       - backend
