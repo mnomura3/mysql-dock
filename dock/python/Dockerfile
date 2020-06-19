@@ -12,7 +12,4 @@ RUN pip install --upgrade pip
 #RUN pip install pymysql ＊2.2以降はmysqlclient推奨
 RUN pip install mysqlclient
 RUN pip install awscli
-RUN pip install aws-sam-cli
-RUN pip install Django==2.2
 RUN export LANG="ja_JP.UTF-8"
-EXPOSE 8000
