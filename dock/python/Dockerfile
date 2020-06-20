@@ -9,6 +9,7 @@ RUN apk --no-cache add tzdata && \
     cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
     apk del tzdata
 RUN pip install --upgrade pip && pip install \
+    awscli \
     mysqlclient \
-    awscli
+    python-dotenv
 RUN export LANG="ja_JP.UTF-8"

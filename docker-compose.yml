@@ -6,6 +6,7 @@ networks:
 services:
   db:
     image: mysql:5.7
+    container_name: mysql-container
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_bin
     volumes:
       - ./.data/mysql:/var/lib/mysql
@@ -22,6 +23,7 @@ services:
 
   python:
     build: ./dock/python
+    container_name: python-container
     tty: true
     volumes:
       - ./app:/usr/src/app
@@ -34,6 +36,7 @@ services:
 
   node:
     build: ./dock/node
+    container_name: nodejs-container
     tty: true
     volumes:
       - ./app/node:/usr/src/app
