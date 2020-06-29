@@ -1,9 +1,11 @@
-FROM python:3-alpine
+FROM python:3.7-alpine
 WORKDIR /usr/src/app
 RUN apk update && apk --no-cache add \
     build-base \
+    gfortran \
     mariadb-connector-c-dev \
     mysql-client \
+    openblas-dev \
     vim
 RUN apk --no-cache add tzdata && \
     cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
