@@ -2,6 +2,7 @@ FROM python:3.7-alpine
 WORKDIR /usr/src/app
 RUN apk update && apk --no-cache add \
     build-base \
+    freetype-dev \
     gfortran \
     mariadb-connector-c-dev \
     mysql-client \
